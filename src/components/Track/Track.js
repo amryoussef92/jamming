@@ -38,6 +38,14 @@ class Track extends React.Component {
           </p>
         </div>
         {this.renderAction()}
+        <iframe
+          src={`https://open.spotify.com/embed/track/${this.props.track.id}`}
+          width="300"
+          height="80"
+          allowtransparency="true"
+          allow="encrypted-media"
+          title="spotify"
+        ></iframe>
       </div>
     );
   }

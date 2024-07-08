@@ -4,11 +4,13 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import Spotify from "../Util/Spotify";
+import PlaylistList from "../PlaylistList/PlaylistList";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistId, setPlaylistId] = useState(null);
 
   const addTrack = (track) => {
     if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
@@ -26,9 +28,13 @@ function App() {
   };
   const savePlaylist = async () => {
     const trackUris = playlistTracks.map((track) => track.uri);
-    await Spotify.savePlaylist(playlistName, trackUris);
-    setPlaylistName("New Playlist");
-    setPlaylistTracks([]);
+    if (trackUris.length) {
+      await Spotify.savePlaylist(playlistName, trackUris);
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    } else {
+      console.log("No tracks to save"); // Debugging log
+    }
   };
 
   const search = async (term) => {
@@ -36,6 +42,15 @@ function App() {
     setSearchResults(results);
   };
 
+  const selectPlaylist = async (id) => {
+    const tracks = await Spotify.getPlaylist(id);
+    const selectedPlaylist = await Spotify.getUserPlaylists().then(
+      (playlists) => playlists.find((playlist) => playlist.id === id)
+    );
+    setPlaylistId(id);
+    setPlaylistName(selectedPlaylist.name);
+    setPlaylistTracks(tracks);
+  };
   return (
     <div>
       <h1>Jamming</h1>
@@ -50,6 +65,7 @@ function App() {
             onNameChange={updatePlaylistName}
             onSave={savePlaylist}
           />
+          <PlaylistList onSelectPlaylist={selectPlaylist} />
         </div>
       </div>
     </div>

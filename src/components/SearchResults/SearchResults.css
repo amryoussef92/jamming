@@ -1,0 +1,16 @@
+.SearchResults {
+  margin: 20px auto;
+  width: 80%;
+}
+
+.SearchResults h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.TrackList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

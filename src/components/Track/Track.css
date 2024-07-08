@@ -1,0 +1,32 @@
+.Track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #c2a0a062;
+  height: 7rem;
+}
+
+.Track .Track-information {
+  display: flex;
+  flex-direction: column;
+}
+
+.Track .Track-action {
+  font-size: 1.5em;
+  color: #1db954;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.Track .Track-action:hover {
+  color: #1ed760;
+}
+iframe {
+  height: 5.5rem;
+  padding-top: 1px;
+}
