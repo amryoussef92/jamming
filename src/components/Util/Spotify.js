@@ -26,23 +26,28 @@ const Spotify = {
 
   async getCurrentUserId() {
     if (userId) {
-      return Promise.resolve(userId);
+      return userId;
     }
 
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-
-    const response = await fetch("https://api.spotify.com/v1/me", { headers });
-    const jsonResponse = await response.json();
-    userId = jsonResponse.id;
-    return userId;
+    try {
+      const response = await fetch("https://api.spotify.com/v1/me", {
+        headers,
+      });
+      const jsonResponse = await response.json();
+      userId = jsonResponse.id;
+      return userId;
+    } catch (error) {
+      console.error("Error fetching user ID:", error);
+    }
   },
 
   async getUserPlaylists() {
     const userId = await Spotify.getCurrentUserId();
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-
+try{
     const response = await fetch(
       `https://api.spotify.com/v1/users/${userId}/playlists`,
       { headers }
@@ -57,6 +62,9 @@ const Spotify = {
       id: playlist.id,
       name: playlist.name,
     }));
+    }catch (error) {
+        console.error("Error fetching playlists:", error);
+    }
   },
 
   async savePlaylist(name, trackUris, id = null) {
@@ -69,6 +77,7 @@ const Spotify = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     };
+    try{
     const userId = await Spotify.getCurrentUserId();
 
     if (id) {
@@ -83,7 +92,7 @@ const Spotify = {
       );
 
       // Update playlist tracks
-      return fetch(
+      await fetch(
         `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
         {
           headers,
@@ -104,7 +113,7 @@ const Spotify = {
       const createPlaylistJsonResponse = await createPlaylistResponse.json();
       const playlistId = createPlaylistJsonResponse.id;
 
-      return fetch(
+      await fetch(
         `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
         {
           headers,
@@ -112,14 +121,16 @@ const Spotify = {
           body: JSON.stringify({ uris: trackUris }),
         }
       );
+    }catch (error) {
+        console.error('Error saving playlist:', error);
     }
   },
-
+  };
   async getPlaylist(id) {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
     const userId = await Spotify.getCurrentUserId();
-
+try{
     const response = await fetch(
       `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
       { headers }
@@ -137,29 +148,35 @@ const Spotify = {
       album: item.track.album.name,
       uri: item.track.uri,
     }));
+} catch (error) {
+    console.error("Error fetching playlist tracks:", error);
+  }
   },
 
   async search(term) {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/search?type=track&q=${term}`,
+        { headers }
+      );
+      const jsonResponse = await response.json();
 
-    const response = await fetch(
-      `https://api.spotify.com/v1/search?type=track&q=${term}`,
-      { headers }
-    );
-    const jsonResponse = await response.json();
+      if (!jsonResponse.tracks) {
+        return [];
+      }
 
-    if (!jsonResponse.tracks) {
-      return [];
+      return jsonResponse.tracks.items.map((track) => ({
+        id: track.id,
+        name: track.name,
+        artist: track.artists[0].name,
+        album: track.album.name,
+        uri: track.uri,
+      }));
+    } catch (error) {
+      console.error("Error fetching search results:", error);
     }
-
-    return jsonResponse.tracks.items.map((track) => ({
-      id: track.id,
-      name: track.name,
-      artist: track.artists[0].name,
-      album: track.album.name,
-      uri: track.uri,
-    }));
   },
 };
 
