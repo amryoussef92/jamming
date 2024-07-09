@@ -1,5 +1,5 @@
 const clientId = "c2c3ff3884114bd48ba3d0dd1b3382c0"; // Replace with your client ID
-const redirectUri = "http://localhost:3000"; // Your redirect URI
+const redirectUri = "jammingwithabsaleka.netlify.app"; // Your redirect URI
 let accessToken;
 let userId;
 
