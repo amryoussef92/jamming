@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
@@ -11,6 +11,16 @@ function App() {
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [playlistId, setPlaylistId] = useState(null);
+
+  useEffect(() => {
+    // Fetch user's playlists on component mount
+    fetchUserPlaylists();
+  }, []);
+
+  const fetchUserPlaylists = async () => {
+    const playlists = await Spotify.getUserPlaylists();
+    console.log(playlists);
+  };
 
   const addTrack = (track) => {
     if (playlistTracks.find((savedTrack) => savedTrack.id === track.id)) {
@@ -28,13 +38,10 @@ function App() {
   };
   const savePlaylist = async () => {
     const trackUris = playlistTracks.map((track) => track.uri);
-    if (trackUris.length) {
-      await Spotify.savePlaylist(playlistName, trackUris);
-      setPlaylistName("New Playlist");
-      setPlaylistTracks([]);
-    } else {
-      console.log("No tracks to save"); // Debugging log
-    }
+    await Spotify.savePlaylist(playlistName, trackUris, playlistId);
+    setPlaylistName("New Playlist");
+    setPlaylistTracks([]);
+    setPlaylistId(null);
   };
 
   const search = async (term) => {
