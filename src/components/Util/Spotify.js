@@ -47,23 +47,23 @@ const Spotify = {
     const userId = await Spotify.getCurrentUserId();
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-try{
-    const response = await fetch(
-      `https://api.spotify.com/v1/users/${userId}/playlists`,
-      { headers }
-    );
-    const jsonResponse = await response.json();
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        { headers }
+      );
+      const jsonResponse = await response.json();
 
-    if (!jsonResponse.items) {
-      return [];
-    }
+      if (!jsonResponse.items) {
+        return [];
+      }
 
-    return jsonResponse.items.map((playlist) => ({
-      id: playlist.id,
-      name: playlist.name,
-    }));
-    }catch (error) {
-        console.error("Error fetching playlists:", error);
+      return jsonResponse.items.map((playlist) => ({
+        id: playlist.id,
+        name: playlist.name,
+      }));
+    } catch (error) {
+      console.error("Error fetching playlists:", error);
     }
   },
 
@@ -77,80 +77,80 @@ try{
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     };
-    try{
-    const userId = await Spotify.getCurrentUserId();
+    try {
+      const userId = await Spotify.getCurrentUserId();
 
-    if (id) {
-      // Update existing playlist name
-      await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists/${id}`,
-        {
-          headers,
-          method: "PUT",
-          body: JSON.stringify({ name }),
-        }
-      );
+      if (id) {
+        // Update existing playlist name
+        await fetch(
+          `https://api.spotify.com/v1/users/${userId}/playlists/${id}`,
+          {
+            headers,
+            method: "PUT",
+            body: JSON.stringify({ name }),
+          }
+        );
 
-      // Update playlist tracks
-      await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
-        {
-          headers,
-          method: "PUT",
-          body: JSON.stringify({ uris: trackUris }),
-        }
-      );
-    } else {
-      // Create new playlist
-      const createPlaylistResponse = await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists`,
-        {
-          headers,
-          method: "POST",
-          body: JSON.stringify({ name }),
-        }
-      );
-      const createPlaylistJsonResponse = await createPlaylistResponse.json();
-      const playlistId = createPlaylistJsonResponse.id;
+        // Update playlist tracks
+        await fetch(
+          `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
+          {
+            headers,
+            method: "PUT",
+            body: JSON.stringify({ uris: trackUris }),
+          }
+        );
+      } else {
+        // Create new playlist
+        const createPlaylistResponse = await fetch(
+          `https://api.spotify.com/v1/users/${userId}/playlists`,
+          {
+            headers,
+            method: "POST",
+            body: JSON.stringify({ name }),
+          }
+        );
+        const createPlaylistJsonResponse = await createPlaylistResponse.json();
+        const playlistId = createPlaylistJsonResponse.id;
 
-      await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
-        {
-          headers,
-          method: "POST",
-          body: JSON.stringify({ uris: trackUris }),
-        }
-      );
-    }catch (error) {
-        console.error('Error saving playlist:', error);
+        await fetch(
+          `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+          {
+            headers,
+            method: "POST",
+            body: JSON.stringify({ uris: trackUris }),
+          }
+        );
+      }
+    } catch (error) {
+      console.error("Error saving playlist:", error);
     }
   },
-  };
   async getPlaylist(id) {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
     const userId = await Spotify.getCurrentUserId();
-try{
-    const response = await fetch(
-      `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
-      { headers }
-    );
-    const jsonResponse = await response.json();
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
+        { headers }
+      );
+      const jsonResponse = await response.json();
 
-    if (!jsonResponse.items) {
-      return [];
+      if (!jsonResponse.items) {
+        return [];
+      }
+
+      return jsonResponse.items.map((item) => ({
+        id: item.track.id,
+        name: item.track.name,
+        artist: item.track.artists[0].name,
+        album: item.track.album.name,
+        uri: item.track.uri,
+      }));
+    } catch (error) {
+      console.error("Error fetching playlist tracks:", error);
     }
-
-    return jsonResponse.items.map((item) => ({
-      id: item.track.id,
-      name: item.track.name,
-      artist: item.track.artists[0].name,
-      album: item.track.album.name,
-      uri: item.track.uri,
-    }));
-} catch (error) {
-    console.error("Error fetching playlist tracks:", error);
-  }
   },
 
   async search(term) {
