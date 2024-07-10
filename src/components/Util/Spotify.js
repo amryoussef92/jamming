@@ -35,6 +35,9 @@ const Spotify = {
       const response = await fetch("https://api.spotify.com/v1/me", {
         headers,
       });
+      if (!response.ok) {
+        throw new Error("Failed to fetch user ID");
+      }
       const jsonResponse = await response.json();
       userId = jsonResponse.id;
       return userId;
@@ -52,6 +55,9 @@ const Spotify = {
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         { headers }
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch user playlists");
+      }
       const jsonResponse = await response.json();
 
       if (!jsonResponse.items) {
@@ -69,6 +75,7 @@ const Spotify = {
 
   async savePlaylist(name, trackUris, id = null) {
     if (!name || !trackUris.length) {
+      console.warn("No playlist name or tracks provided");
       return;
     }
 
@@ -110,6 +117,9 @@ const Spotify = {
             body: JSON.stringify({ name }),
           }
         );
+        if (!createPlaylistResponse.ok) {
+          throw new Error("Failed to create playlist");
+        }
         const createPlaylistJsonResponse = await createPlaylistResponse.json();
         const playlistId = createPlaylistJsonResponse.id;
 
@@ -135,6 +145,9 @@ const Spotify = {
         `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
         { headers }
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch playlist");
+      }
       const jsonResponse = await response.json();
 
       if (!jsonResponse.items) {
@@ -161,6 +174,9 @@ const Spotify = {
         `https://api.spotify.com/v1/search?type=track&q=${term}`,
         { headers }
       );
+      if (!response.ok) {
+        throw new Error("Failed to fetch search results");
+      }
       const jsonResponse = await response.json();
 
       if (!jsonResponse.tracks) {
