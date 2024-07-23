@@ -17,9 +17,11 @@ const Spotify = {
       const expiresIn = Number(expiresInMatch[1]);
       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
       window.history.pushState("Access Token", null, "/");
+      console.log("Access Token obtained:", accessToken);
       return accessToken;
     } else {
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+      console.log("Redirecting to Spotify for authentication:", accessUrl);
       window.location = accessUrl;
     }
   },
