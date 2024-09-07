@@ -37,7 +37,7 @@ class Track extends React.Component {
             {this.props.track.artist} | {this.props.track.album}
           </p>
         </div> */}
-        {this.renderAction()}
+
         <iframe
           src={`https://open.spotify.com/embed/track/${this.props.track.id}`}
           height="80"
@@ -45,6 +45,7 @@ class Track extends React.Component {
           allow="encrypted-media"
           title="spotify"
         ></iframe>
+        {this.renderAction()}
       </div>
     );
   }
