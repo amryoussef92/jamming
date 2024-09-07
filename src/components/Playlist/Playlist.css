@@ -29,3 +29,7 @@
 .Playlist .Playlist-save:hover {
   background-color: #1ed760;
 }
+
+TrackList {
+  padding: 30px;
+}
