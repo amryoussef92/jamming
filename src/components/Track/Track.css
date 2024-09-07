@@ -9,10 +9,10 @@
   height: 7rem;
 }
 
-.Track .Track-information {
+/* .Track .Track-information {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .Track .Track-action {
   font-size: 1.5em;
@@ -30,4 +30,5 @@ iframe {
   height: 5.5rem;
   padding-top: 10px;
   border: none;
+  width: 90%;
 }
