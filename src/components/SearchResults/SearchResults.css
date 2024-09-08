@@ -1,7 +1,7 @@
 .SearchResults {
   margin: 20px auto;
-  width: 80%;
-  height: 1vh;
+  width: 70%;
+  max-height: 1rem;
 }
 
 .SearchResults h2 {
