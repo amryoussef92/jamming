@@ -3,10 +3,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none
   border-radius: 4px;
   background-color: #c2a0a000;
-  height: 7rem;
+  height: 6rem;
 }
 
 /* .Track .Track-information {
