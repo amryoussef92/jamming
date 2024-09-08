@@ -1,6 +1,7 @@
 .SearchResults {
   margin: 20px auto;
   width: 80%;
+  height: 2vh;
 }
 
 .SearchResults h2 {
@@ -13,5 +14,4 @@
 .TrackList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
