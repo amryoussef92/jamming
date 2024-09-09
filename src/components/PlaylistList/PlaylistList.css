@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column; /* Stack playlist items vertically */
   /* justify-content: center; Center the items horizontally */
+  border: 1px solid gray;
   padding: auto;
   width: 400px;
   height: 500px;
