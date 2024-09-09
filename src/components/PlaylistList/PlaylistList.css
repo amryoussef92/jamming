@@ -5,7 +5,7 @@
   border: 1px solid rgb(88, 191, 109);
   padding: auto;
   /* width: 400px; */
-  height: 400px;
+  height: 500px;
   overflow-y: auto; /* Enable vertical scrolling */
   padding: 10px; /* Add some padding if needed */
   box-sizing: border-box;
