@@ -10,5 +10,6 @@
 .App-playlist {
   display: flex;
   justify-content: space-between;
+  align-content: start;
   margin-top: 20px;
 }

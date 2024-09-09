@@ -24,6 +24,7 @@ h6 {
 }
 h1 {
   justify-self: center;
+  align-self: center;
   color: white;
 }
 button {
