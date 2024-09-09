@@ -4,6 +4,7 @@
   border: 1px solid #ccc; /* Optional: Add border for better visibility */
   padding: 0.5rem; /* Optional: Add padding for some space inside */
   box-sizing: border-box; /* Ensure padding and border are included in the height */
+  width: 50%;
 }
 
 /* Optional: Styling for the scrollbars */
