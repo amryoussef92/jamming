@@ -18,14 +18,25 @@ const PlaylistList = ({ onSelectPlaylist }) => {
   return (
     <div className="PlaylistList">
       {playlists.map((playlist) => (
-        <PlaylistListItem
+        // <PlaylistListItem
+        //   key={playlist.id}
+        //   id={playlist.id}
+        //   name={playlist.name}
+        //   image={playlist.images[0]?.url} // Get the first image if available
+        //   trackCount={playlist.tracks.total}
+        //   onSelect={onSelectPlaylist}
+        // />
+        <div
+          className="PlaylistListItem"
           key={playlist.id}
-          id={playlist.id}
-          name={playlist.name}
-          image={playlist.images[0]?.url} // Get the first image if available
-          trackCount={playlist.tracks.total}
-          onSelect={onSelectPlaylist}
-        />
+          onClick={() => onSelectPlaylist(playlist.id)}
+        >
+          <img src={playlist.images[0]?.url} alt={`${playlist.name} Cover`} />
+          <div className="PlaylistDetails">
+            <h3>{playlist.name}</h3>
+            <p>{playlist.tracks.total} tracks</p>
+          </div>
+        </div>
       ))}
     </div>
   );
