@@ -4,6 +4,6 @@
   align-items: center; /* Center the items horizontally */
   padding: 1rem;
   gap: 1rem; /* Space between playlist items */
-  max-width: 1200px; /* Maximum width of the list */
+  /* Maximum width of the list */
   margin: 0 auto; /* Center the list horizontally within its container */
 }
