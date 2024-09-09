@@ -4,4 +4,8 @@
   /* justify-content: center; Center the items horizontally */
   padding: auto;
   width: 400px;
+  height: 500px;
+}
+.PlaylistList::-webkit-scrollbar {
+  display: none;
 }
