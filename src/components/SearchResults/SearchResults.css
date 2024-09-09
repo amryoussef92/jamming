@@ -1,7 +1,11 @@
 .SearchResults {
   margin: 20px auto;
   width: 70%;
-  max-height: 1rem;
+  /* max-height: 1rem; */
+  height: 1000px; /* Limit the height to 1.5vh */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px; /* Add some padding if needed */
+  box-sizing: border-box;
 }
 
 .SearchResults h2 {
