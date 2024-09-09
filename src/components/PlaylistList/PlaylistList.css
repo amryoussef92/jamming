@@ -1,8 +1,9 @@
 .PlaylistList {
   display: flex;
   flex-direction: column; /* Stack playlist items vertically */
-  align-items: center; /* Center the items horizontally */
-  padding: 1rem;
+  align-items: center;
+  justify-content: center; /* Center the items horizontally */
+  padding: auto;
   border: none;
-  width: 100%;
+  width: 500px;
 }
