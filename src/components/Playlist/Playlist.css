@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 500px;
+  border: 1px solid gray;
 }
 
 .Playlist input {
