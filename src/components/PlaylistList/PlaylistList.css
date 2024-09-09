@@ -3,6 +3,5 @@
   flex-direction: column; /* Stack playlist items vertically */
   /* justify-content: center; Center the items horizontally */
   padding: auto;
-  border: none;
   width: 400px;
 }
