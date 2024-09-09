@@ -1,7 +1,23 @@
 .SearchResults {
-  margin: 20px auto;
-  width: 70%;
-  max-height: 1rem;
+  height: 1.5vh; /* Fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Add border for better visibility */
+  padding: 0.5rem; /* Optional: Add padding for some space inside */
+  box-sizing: border-box; /* Ensure padding and border are included in the height */
+}
+
+/* Optional: Styling for the scrollbars */
+.SearchResults::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.SearchResults::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar */
+  border-radius: 4px; /* Rounded corners for the scrollbar */
+}
+
+.SearchResults::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color when hovering */
 }
 
 .SearchResults h2 {
