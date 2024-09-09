@@ -7,5 +7,6 @@
   max-width: 1200px; /* Optionally, limit the width of the container */
   margin: 0 auto; /* Center the container horizontally */
   padding: 20px;
-  box-sizing: border-box; /* Include padding in width calculations */
+  box-sizing: border-box;
+  background-color: #29ef39b4; /* Include padding in width calculations */
 }

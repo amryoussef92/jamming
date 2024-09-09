@@ -49,7 +49,7 @@ const Spotify = {
   },
 
   async getUserPlaylists() {
-    const userId = await Spotify.getCurrentUserId();
+    // const userId = await Spotify.getCurrentUserId();
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
     try {
