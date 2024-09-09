@@ -22,6 +22,8 @@ const PlaylistList = ({ onSelectPlaylist }) => {
           key={playlist.id}
           id={playlist.id}
           name={playlist.name}
+          image={playlist.images[0]?.url} // Get the first image if available
+          trackCount={playlist.tracks.total}
           onSelect={onSelectPlaylist}
         />
       ))}
