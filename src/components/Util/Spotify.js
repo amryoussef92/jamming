@@ -69,6 +69,8 @@ const Spotify = {
       return jsonResponse.items.map((playlist) => ({
         id: playlist.id,
         name: playlist.name,
+        images: playlist.images, // Return playlist images
+        tracks: playlist.tracks,
       }));
     } catch (error) {
       console.error("Error fetching playlists:", error);
