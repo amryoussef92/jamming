@@ -1,8 +1,8 @@
 .SearchResults {
   margin: 20px auto;
   width: 70%;
-  /* max-height: 1rem; */
-  height: 1000px; /* Limit the height to 1.5vh */
+  border: 1px solid gray;
+  height: 500px; /* Limit the height to 1.5vh */
   overflow-y: auto; /* Enable vertical scrolling */
   padding: 10px; /* Add some padding if needed */
   box-sizing: border-box;
