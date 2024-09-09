@@ -3,7 +3,6 @@
   flex-direction: column; /* Stack playlist items vertically */
   align-items: center; /* Center the items horizontally */
   padding: 1rem;
-  gap: 1rem; /* Space between playlist items */
-  /* Maximum width of the list */
-  margin: 0 auto; /* Center the list horizontally within its container */
+  border: none;
+  width: 100%;
 }
