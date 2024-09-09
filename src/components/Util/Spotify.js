@@ -53,10 +53,9 @@ const Spotify = {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
     try {
-      const response = await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists`,
-        { headers }
-      );
+      const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+        headers,
+      });
       if (!response.ok) {
         throw new Error("Failed to fetch user playlists");
       }
@@ -103,14 +102,11 @@ const Spotify = {
         );
 
         // Update playlist tracks
-        await fetch(
-          `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
-          {
-            headers,
-            method: "PUT",
-            body: JSON.stringify({ uris: trackUris }),
-          }
-        );
+        await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
+          headers,
+          method: "PUT",
+          body: JSON.stringify({ uris: trackUris }),
+        });
       } else {
         // Create new playlist
         const createPlaylistResponse = await fetch(
