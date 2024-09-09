@@ -1,17 +1,44 @@
+/* PlaylistList.css */
 .PlaylistList {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #36dc39;
-  border-radius: 5px;
-  color: bisque;
+  display: flex;
+  flex-direction: column; /* Stack playlists in a vertical column */
+  gap: 20px; /* Space between each playlist row */
+  width: 100%; /* Make the container full width */
+  max-width: 1200px; /* Optionally, limit the width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in width calculations */
 }
 
 .PlaylistListItem {
+  display: flex;
+  align-items: center; /* Align items vertically in the row */
   padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.PlaylistListItem:hover {
-  color: black;
+.PlaylistListItem img {
+  width: 60px; /* Control the size of the playlist image */
+  height: 60px;
+  border-radius: 5px;
+  margin-right: 20px; /* Space between image and text */
+}
+
+.PlaylistListItem div {
+  display: flex;
+  flex-direction: column; /* Stack name and track count vertically */
+}
+
+.PlaylistListItem h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.PlaylistListItem p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #555;
 }
