@@ -1,6 +1,6 @@
 .SearchResults {
   margin: 0 20px;
-  width: 70%;
+  width: 50%;
   border: 1px solid gray;
   border-radius: 8px;
   height: 500px; /* Limit the height to 1.5vh */
