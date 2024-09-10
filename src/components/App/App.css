@@ -15,6 +15,6 @@
 }
 img {
   width: 250px;
-  height: 100px;
-  margin-right: -2px;
+  height: 80px;
+  justify-self: center;
 }
