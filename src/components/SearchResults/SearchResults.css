@@ -17,8 +17,3 @@
   margin-bottom: 20px;
   color: white;
 }
-
-.TrackList {
-  display: flex;
-  flex-direction: column;
-}

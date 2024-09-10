@@ -1,11 +1,10 @@
 .PlaylistList {
   display: flex;
   flex-direction: column; /* Stack playlist items vertically */
-  /* justify-content: center; Center the items horizontally */
   border: 1px solid rgb(88, 191, 109);
   border-radius: 8px;
   padding: auto;
-  width: 30%;
+  width: 20%;
   height: 500px;
   overflow-y: auto; /* Enable vertical scrolling */
   padding: 10px; /* Add some padding if needed */
