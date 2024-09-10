@@ -10,7 +10,7 @@
   overflow-y: auto; /* Enable vertical scrolling */
   padding: 10px; /* Add some padding if needed */
   box-sizing: border-box;
-  width: 30%;
+  width: 40%;
 }
 .Playlist::-webkit-scrollbar {
   display: none;
