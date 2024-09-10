@@ -60,7 +60,7 @@ function App() {
   };
   return (
     <div>
-      <h1>Jamming</h1>
+      <img src="./Jammming (4).png" className="imaj" alt="title" />
       <div className="App">
         <SearchBar onSearch={search} />
         <div className="App-playlist">
