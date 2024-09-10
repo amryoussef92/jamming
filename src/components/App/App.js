@@ -5,6 +5,7 @@ import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import Spotify from "../Util/Spotify";
 import PlaylistList from "../PlaylistList/PlaylistList";
+import logo from "./Jammming (4).png";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -60,7 +61,7 @@ function App() {
   };
   return (
     <div>
-      <img src="./Jammming (4).png" className="imaj" alt="title" />
+      <img src={logo} className="imaj" alt="title" />
       <div className="App">
         <SearchBar onSearch={search} />
         <div className="App-playlist">
