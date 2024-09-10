@@ -1,6 +1,6 @@
 .Playlist {
   margin: 0 5px;
-  width: 100%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,9 @@
   padding: 10px; /* Add some padding if needed */
   box-sizing: border-box;
 }
-
+.Playlist::-webkit-scrollbar {
+  display: none;
+}
 .Playlist input {
   width: 80%;
   padding: 10px;
